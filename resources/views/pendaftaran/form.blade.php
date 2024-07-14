@@ -73,8 +73,7 @@
                                                 <label for="nisn">NISN(Nomor Induk Siswa Nasional)</label>
                                                 <div class="position-relative">
                                                     <input type="number" class="form-control" name="nisn"
-                                                        placeholder="NISN" id="nisn"
-                                                        required>
+                                                        placeholder="NISN" id="nisn" required>
                                                     <div class="form-control-icon">
                                                         <i class="bi bi-info-square"></i>
                                                     </div>
@@ -86,8 +85,7 @@
                                                 <label for="nik">NIK</label>
                                                 <div class="position-relative">
                                                     <input type="number" class="form-control" name="nik"
-                                                        placeholder="NIK" id="nik"
-                                                        required>
+                                                        placeholder="NIK" id="nik" required>
                                                     <div class="form-control-icon">
                                                         <i class="bi bi-info-square"></i>
                                                     </div>
@@ -115,8 +113,7 @@
                                                 <label for="tempat_lahir">Tempat Lahir</label>
                                                 <div class="position-relative">
                                                     <input type="text" class="form-control" name="tempat_lahir"
-                                                        placeholder="Tempat Lahir" id="tempat_lahir"
-                                                        required>
+                                                        placeholder="Tempat Lahir" id="tempat_lahir" required>
                                                     <div class="form-control-icon">
                                                         <i class="bi bi-info-square"></i>
                                                     </div>
@@ -154,8 +151,7 @@
                                             <div class="form-group has-icon-left">
                                                 <label for="agama">Agama</label>
                                                 <div class="position-relative">
-                                                    <select class="form-control" name="agama" id="agama"
-                                                        required>
+                                                    <select class="form-control" name="agama" id="agama" required>
                                                         <option disabled selected>Agama</option>
                                                         <option>Islam</option>
                                                         <option>Kristen</option>
@@ -175,8 +171,7 @@
                                                 <label for="domisili">Domisili</label>
                                                 <div class="position-relative">
                                                     <input type="text" class="form-control" name="domisili"
-                                                        placeholder="Domisili" id="domisili"
-                                                        required>
+                                                        placeholder="Domisili" id="domisili" required>
                                                     <div class="form-control-icon">
                                                         <i class="bi bi-house-door"></i>
                                                     </div>
@@ -188,8 +183,7 @@
                                                 <label for="no_wa">Nomor Whatsapp Aktif</label>
                                                 <div class="position-relative">
                                                     <input type="number" class="form-control" name="no_wa"
-                                                        placeholder="Nomor Whatsapp Aktif" id="no_wa"
-                                                        required>
+                                                        placeholder="Nomor Whatsapp Aktif" id="no_wa" required>
                                                     <div class="form-control-icon">
                                                         <i class="bi bi-chat-dots"></i>
                                                     </div>
@@ -227,7 +221,8 @@
                                                     <select class="form-control" name="penghasilan_orang_tua"
                                                         id="penghasilan_orang_tua">
                                                         <option disabled selected>Penghasilan Orang Tua</option>
-                                                        <option> < Rp. 500.000</option>
+                                                        <option>
+                                                            < Rp. 500.000</option>
                                                         <option> Rp. 500.000 - Rp. 1.000.000</option>
                                                         <option> Rp. 1.000.000 - Rp. 2.000.000</option>
                                                         <option> > Rp. 2.000.000</option>
@@ -282,11 +277,11 @@
                                             <div class="form-group has-icon-left">
                                                 <label for="rencana_tempat_tinggal">Rencana Tempat Tinggal</label>
                                                 <div class="position-relative">
-                                                    <select class="form-control"
-                                                        name="id_rencana_tempat_tinggal" id="id_rencana_tempat_tinggal" value="">
+                                                    <select class="form-control" name="id_rencana_tempat_tinggal"
+                                                        id="id_rencana_tempat_tinggal" value="">
                                                         <option disabled selected>Rencana Tempat Tinggal
                                                         </option>
-                                                        
+
                                                     </select>
                                                     <div class="form-control-icon">
                                                         <i class="bi bi-info-square"></i>
@@ -312,21 +307,23 @@
                                                 </ol>
 
                                                 <div class="position-relative">
-                                                    <select class="form-control"
-                                                        name="id_jalur_pendaftaran" id="id_jalur_pendaftaran" value="">
+                                                    <select class="form-control" name="id_jalur_pendaftaran"
+                                                        id="id_jalur_pendaftaran" value="">
                                                         <option disabled selected>Jalur Pendaftaran</option>
-                                                        
+
                                                     </select>
                                                     <div class="form-control-icon">
                                                         <i class="icon dripicons dripicons-network-3"></i>
                                                     </div>
                                                 </div>
-                                        <div class="col-12 d-flex justify-content-end">
-                                            <button type="submit" class="btn btn-primary me-1 mb-1">Simpan</button>
-                                            <button type="reset" class="btn btn-light-secondary me-1 mb-1">Batal</button>
+                                                <div class="col-12 d-flex justify-content-end">
+                                                    <button type="submit"
+                                                        class="btn btn-primary me-1 mb-1">Simpan</button>
+                                                    <button type="reset"
+                                                        class="btn btn-light-secondary me-1 mb-1">Batal</button>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
                             </form>
                         </div>
                     </div>
@@ -341,28 +338,30 @@
     <script>
         $(document).ready(function() {
             loadDataFromDatabase();
-    
+
             $('#pendaftaranForm').on('submit', function(event) {
                 event.preventDefault();
-    
-                var formData = new FormData(this);
-                
+
+                var formData = $(this).serializeArray();
+
                 // Konversi nilai dropdown menjadi integer
-                formData.set('id_program_studi', parseInt(formData.get('id_program_studi'), 10));
-                formData.set('id_sumber_informasi', parseInt(formData.get('id_sumber_informasi'), 10));
-                formData.set('id_jalur_pendaftaran', parseInt(formData.get('id_jalur_pendaftaran'), 10));
-                formData.set('id_rencana_tempat_tinggal', parseInt(formData.get('id_rencana_tempat_tinggal'), 10));
-    
+                formData.forEach(function(item) {
+                    if (['id_program_studi', 'id_sumber_informasi', 'id_jalur_pendaftaran',
+                            'id_rencana_tempat_tinggal'
+                        ].includes(item.name)) {
+                        item.value = parseInt(item.value);
+                    }
+                });
+
                 var id = $('#id').val();
-                var url = id ? '{{ route('pendaftaran.update', '') }}/' + id : '{{ route('pendaftaran.store') }}';
+                var url = id ? '{{ route('pendaftaran.update', '') }}/' + id :
+                    '{{ route('pendaftaran.store') }}';
                 var method = id ? 'PUT' : 'POST';
-    
+
                 $.ajax({
                     url: url,
                     type: method,
-                    data: formData,
-                    processData: false, 
-                    contentType: false, 
+                    data: $.param(formData),
                     success: function(response) {
                         $('#messages').html('<div>Data berhasil disimpan!</div>');
                         $('#pendaftaranForm')[0].reset();
@@ -381,37 +380,46 @@
                 });
             });
         });
-    
+
         function loadDataFromDatabase() {
             $.ajax({
                 url: '{{ route('pendaftaran.show') }}',
                 type: 'GET',
                 success: function(response) {
-                    
+
                     // Isi dropdown untuk program studi, sumber informasi, jalur pendaftaran, dan rencana tempat tinggal
                     response.data.program_studi.forEach(function(item) {
-                        $('#id_program_studi').append(`<option value="${item.id_program_studi}">${item.nama_program_studi}</option>`);
+                        $('#id_program_studi').append(
+                            `<option value="${item.id_program_studi}">${item.nama_program_studi}</option>`
+                            );
                     });
                     response.data.sumber_informasi.forEach(function(item) {
-                        $('#id_sumber_informasi').append(`<option value="${item.id_sumber_informasi}">${item.nama_sumber_informasi}</option>`);
+                        $('#id_sumber_informasi').append(
+                            `<option value="${item.id_sumber_informasi}">${item.nama_sumber_informasi}</option>`
+                            );
                     });
                     response.data.jalur_pendaftaran.forEach(function(item) {
-                        $('#id_jalur_pendaftaran').append(`<option value="${item.id_jalur_pendaftaran}">${item.nama_jalur_pendaftaran}</option>`);
+                        $('#id_jalur_pendaftaran').append(
+                            `<option value="${item.id_jalur_pendaftaran}">${item.nama_jalur_pendaftaran}</option>`
+                            );
                     });
                     response.data.rencana_tempat_tinggal.forEach(function(item) {
-                        $('#id_rencana_tempat_tinggal').append(`<option value="${item.id_rencana_tempat_tinggal}">${item.nama_rencana_tempat_tinggal}</option>`);
+                        $('#id_rencana_tempat_tinggal').append(
+                            `<option value="${item.id_rencana_tempat_tinggal}">${item.nama_rencana_tempat_tinggal}</option>`
+                            );
                     });
-    
+
                     // Isi form jika ada data pendaftaran
                     if (response.pendaftaran.length > 0) {
-                        var pendaftaran = response.pendaftaran[0]; 
+                        var pendaftaran = response.pendaftaran[0];
                         $('#id').val(pendaftaran.id);
                         $('#nama_lengkap').val(pendaftaran.nama_lengkap);
                         $('#nisn').val(pendaftaran.nisn);
                         $('#nik').val(pendaftaran.nik);
                         $('#jenis_kelamin').val(pendaftaran.jenis_kelamin);
                         $('#tempat_lahir').val(pendaftaran.tempat_lahir);
-                        $('#tanggal_lahir').val(pendaftaran.tanggal_lahir.split('-').reverse().join('/')); // Mengubah format tanggal
+                        $('#tanggal_lahir').val(pendaftaran.tanggal_lahir.split('-').reverse().join(
+                        '/')); // Mengubah format tanggal
                         $('#agama').val(pendaftaran.agama);
                         $('#domisili').val(pendaftaran.domisili);
                         $('#no_wa').val(pendaftaran.no_wa);
@@ -431,7 +439,7 @@
                 }
             });
         }
-    </script>    
+    </script>
 
 </body>
 
