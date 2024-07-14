@@ -5,7 +5,6 @@
 
 <head>
     <title>Data Diri Mahasiswa</title>
-    <script src="{{ asset('js/form.js') }}"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
@@ -310,10 +309,9 @@
                                                     <select class="form-control" name="id_jalur_pendaftaran"
                                                         id="id_jalur_pendaftaran" value="">
                                                         <option disabled selected>Jalur Pendaftaran</option>
-
                                                     </select>
                                                     <div class="form-control-icon">
-                                                        <i class="icon dripicons dripicons-network-3"></i>
+                                                        <i class="bi bi-info-square"></i>
                                                     </div>
                                                 </div>
                                                 <div class="col-12 d-flex justify-content-end">
@@ -324,16 +322,18 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </section>
-
         </div>
     </div>
     @include('partials.script')
     @include('partials.footer')
+    
 
     <script>
         $(document).ready(function() {
@@ -346,9 +346,7 @@
 
                 // Konversi nilai dropdown menjadi integer
                 formData.forEach(function(item) {
-                    if (['id_program_studi', 'id_sumber_informasi', 'id_jalur_pendaftaran',
-                            'id_rencana_tempat_tinggal'
-                        ].includes(item.name)) {
+                    if (['id_program_studi', 'id_sumber_informasi', 'id_jalur_pendaftaran','id_rencana_tempat_tinggal'].includes(item.name)) {
                         item.value = parseInt(item.value);
                     }
                 });
@@ -386,6 +384,12 @@
                 url: '{{ route('pendaftaran.show') }}',
                 type: 'GET',
                 success: function(response) {
+
+                // Kosongkan dropdown terlebih dahulu
+                $('#id_program_studi').empty();
+                $('#id_sumber_informasi').empty();
+                $('#id_jalur_pendaftaran').empty();
+                $('#id_rencana_tempat_tinggal').empty();
 
                     // Isi dropdown untuk program studi, sumber informasi, jalur pendaftaran, dan rencana tempat tinggal
                     response.data.program_studi.forEach(function(item) {
