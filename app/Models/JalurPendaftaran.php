@@ -9,7 +9,7 @@ class JalurPendaftaran extends Model
 {
     use HasFactory;
 
-    protected $table = 'jalur_pendaftarans';
+    protected $table = 'ref_jalur_pendaftarans';
     protected $primaryKey = 'id_jalur_pendaftaran';
 
     protected $fillable = [

@@ -46,4 +46,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(Pendaftaran::class);
     }
+    public function uploadBerkas()
+    {
+        return $this->hasMany(UploadBerkas::class, 'user_id', 'user_id');
+    }
+
 }

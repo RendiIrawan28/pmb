@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\UploadController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UploadBerkasController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,8 +18,9 @@ Route::middleware('auth', 'verified')->group(function () {
         return view('pendaftaran.form');
     })->name('pendaftaran');
 
-    Route::post('/upload', [UploadController::class, 'store'])->name('upload.store');
-    Route::get('/file-upload', [UploadController::class, 'index'])->name('fileUpload');
+    Route::get('/file-upload', [UploadBerkasController::class, 'index'])->name('fileUpload');
+    Route::get('/upload', [UploadBerkasController::class, 'show'])->name('upload.show');
+    Route::post('/upload', [UploadBerkasController::class, 'store'])->name('upload.store');
 
 
     Route::get('/pendaftaran', [PendaftaranController::class, 'show'])->name('pendaftaran.show');

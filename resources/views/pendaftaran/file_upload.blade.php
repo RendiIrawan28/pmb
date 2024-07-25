@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<title>Upload Data</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
-<meta name="csrf-token" content="{{ csrf_token() }}">
-@include('partials.header')
+<head>
+    <title>Upload Data</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    @include('partials.header')
+</head>
 
 <body>
-    <script src="assets/static/js/initTheme.js"></script>
     <div id="app">
         @include('partials.sidebar')
         <div id="main">
@@ -22,42 +23,9 @@
                             <div class="card-body">
                                 <div id="success-message" class="alert alert-success" style="display:none;"></div>
                                 <div id="error-message" class="alert alert-danger" style="display:none;"></div>
-                                <form id="upload-form" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="mb-3">
-                                                <label for="ijazah" class="form-label">Ijazah/SKL</label>
-                                                <input class="form-control" type="file" name="ijazah" id="ijazah">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="mb-3">
-                                                <label for="nilai_raport" class="form-label">Nilai Raport Semester 5</label>
-                                                <input class="form-control" type="file" name="nilai_raport" id="nilai_raport">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="mb-3">
-                                                <label for="bukti_santri" class="form-label">Bukti Santri</label>
-                                                <input class="form-control" type="file" name="bukti_santri" id="bukti_santri">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="mb-3">
-                                                <label for="sertifikat_hapalan" class="form-label">Sertifikat Hapalan</label>
-                                                <input class="form-control" type="file" name="sertifikat_hapalan" id="sertifikat_hapalan">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="mb-3">
-                                                <label for="surat_keterangan" class="form-label">Surat Keterangan Tidak Mampu</label>
-                                                <input class="form-control" type="file" name="surat_keterangan" id="surat_keterangan">
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary">Upload</button>
-                                    </div>
-                                </form>
+                                <div id="form-container" class="row">
+                                    <!-- Dynamic content will be added here -->
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -69,41 +37,123 @@
     @include('partials.footer')
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://malsup.github.io/jquery.form.js"></script>
     <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
         $(document).ready(function() {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            $('#upload-form').submit(function(e) {
-                e.preventDefault();
-
-                let formData = new FormData(this);
-
+            function loadDataFromDatabase() {
                 $.ajax({
-                    type: 'POST',
-                    url: '{{ route('upload.store') }}',
-                    data: formData,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
+                    url: '{{ route('upload.show') }}',
+                    type: 'GET',
                     success: function(response) {
-                        if (response.success) {
-                            $('#success-message').text(response.success).show();
-                            $('#error-message').hide();
-                        } else {
-                            $('#error-message').text(response.error).show();
-                            $('#success-message').hide();
-                        }
+                        const data = response.data;
+                        const formContainer = $('#form-container');
+
+                        formContainer.empty();
+
+                        data.forEach(item => {
+                            const colDiv = $('<div>', {
+                                class: 'col-md-12'
+                            });
+
+                            const mb3Div = $('<div>', {
+                                class: 'mb-1'
+                            });
+
+                            const label = $('<label>', {
+                                class: 'form-label',
+                                for: `file-${item.id_ref_berkas}`,
+                                text: item.jenis_berkas
+                            });
+
+                            const fileForm = $('<form>', {
+                                id: `upload-form-${item.id_ref_berkas}`,
+                                method: 'POST',
+                                action: '{{ route('upload.store') }}',
+                                enctype: 'multipart/form-data',
+                                class: 'file-upload-form'
+                            });
+
+                            const fileUploadWrapper = $('<div>', {
+                                class: 'file-upload-wrapper'
+                            });
+
+                            const fileInput = $('<input>', {
+                                class: 'form-control',
+                                type: 'file',
+                                name: `berkas[${item.id_ref_berkas}]`,
+                                id: `berkas-${item.id_ref_berkas}`
+                            });
+
+                            const hiddenInput = $('<input>', {
+                                type: 'hidden',
+                                name: 'id_ref_berkas',
+                                value: item.id_ref_berkas
+                            });
+
+                            const submitButton = $('<button>', {
+                                type: 'submit',
+                                class: 'btn btn-primary',
+                                text: 'Upload'
+                            });
+
+                            fileUploadWrapper.append(fileInput).append(submitButton);
+                            fileForm.append(fileUploadWrapper).append(hiddenInput);
+                            mb3Div.append(label).append(fileForm);
+                            colDiv.append(mb3Div);
+                            formContainer.append(colDiv);
+
+                            fileForm.on('submit', function(e) {
+                                e.preventDefault();
+                                // Validasi file
+                                const fileInputElem = $(this).find('input[type="file"]')[0];
+                                const file = fileInputElem.files[0];
+                                const allowedTypes = ['image/jpeg', 'image/png', 'application/pdf']; // Ubah sesuai kebutuhan
+                                const maxSize = 2 * 1024 * 1024; // 2MB
+
+                                if (!file) {
+                                    $('#error-message').text('Please select a file to upload.').show();
+                                    return;
+                                }
+
+                                if (!allowedTypes.includes(file.type)) {
+                                    $('#error-message').text('Invalid file type. Please upload a JPEG, PNG, or PDF file.').show();
+                                    return;
+                                }
+
+                                if (file.size > maxSize) {
+                                    $('#error-message').text('File size exceeds the maximum limit of 2MB.').show();
+                                    return;
+                                }
+                                var formData = new FormData(this);
+                                $.ajax({
+                                    url: $(this).attr('action'),
+                                    type: $(this).attr('method'),
+                                    data: formData,
+                                    contentType: false,
+                                    processData: false,
+                                    success: function(response) {
+                                        $('#success-message').text('File uploaded successfully!').show();
+                                    },
+                                    error: function(xhr, status, error) {
+                                        $('#error-message').text('Error uploading file!').show();
+                                    }
+                                });
+                            });
+                        });
                     },
-                    error: function(response) {
-                        $('#error-message').text(response.responseJSON.message).show();
-                        $('#success-message').hide();
+                    error: function(xhr, status, error) {
+                        console.error('AJAX Error: ', status, error);
                     }
                 });
-            });
+            }
+
+            loadDataFromDatabase();
         });
     </script>
 </body>

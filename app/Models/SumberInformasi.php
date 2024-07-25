@@ -9,7 +9,7 @@ class SumberInformasi extends Model
 {
     use HasFactory;
 
-    protected $table = 'sumber_informasis';
+    protected $table = 'ref_sumber_informasis';
     protected $primaryKey = 'id_sumber_informasi';
 
     protected $fillable = [

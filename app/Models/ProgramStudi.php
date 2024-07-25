@@ -9,7 +9,7 @@ class ProgramStudi extends Model
 {
     use HasFactory;
 
-    protected $table = 'program_studis';
+    protected $table = 'ref_program_studis';
     protected $primaryKey = 'id_program_studi';
 
     protected $fillable = [

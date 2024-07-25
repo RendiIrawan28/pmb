@@ -11562,6 +11562,19 @@ fieldset:disabled .btn {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
+.file-upload-wrapper {
+    display: flex;
+    align-items: center;
+}
+.file-upload-wrapper .form-control {
+    flex: 1;
+    margin-right: 10px;
+}
+.file-upload-wrapper .btn-primary {
+    white-space: nowrap;
+}
+
 .bi-123:before {
     content: "";
 }
@@ -18780,6 +18793,16 @@ body .bi:before,
         max-height: 0;
     }
 }
+
+.statusList li {
+    color: grey;
+}
+
+.statusList li.active {
+    color: black;
+    font-weight: bold;
+}
+
 .nav-pills .nav-link.active {
     box-shadow: 0 2px 10px rgba(67, 94, 190, 0.5);
 }

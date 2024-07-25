@@ -9,7 +9,7 @@ class RencanaTempatTinggal extends Model
 {
     use HasFactory;
 
-    protected $table = 'rencana_tempat_tinggals';
+    protected $table = 'ref_rencana_tempat_tinggals';
     protected $primaryKey = 'id_rencana_tempat_tinggal';
 
     protected $fillable = [

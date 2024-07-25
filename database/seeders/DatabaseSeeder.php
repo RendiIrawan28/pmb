@@ -102,5 +102,137 @@ class DatabaseSeeder extends Seeder
                 'nama_rencana_tempat_tinggal' => 'Lainnya',
             ],
         ]);
+
+        \App\Models\RefBerkas::insert([
+            [
+                'jenis_berkas' => 'KK',
+            ],
+            [
+                'jenis_berkas' => 'Ijazah',
+            ],
+            [
+                'jenis_berkas' => 'SKHUN',
+            ],
+        ]);
+        \App\Models\refJenisKelamin::insert([
+            [
+                'jenis_kelamin' => 'Laki-laki',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'jenis_kelamin' => 'Perempuan',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            
+        ]);
+
+        \App\Models\RefAgama::insert([
+            [
+                'nama_agama' => 'Islam',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'nama_agama' => 'Kristen',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'nama_agama' => 'Katolik',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'nama_agama' => 'Hindu',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'nama_agama' => 'Budha',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'nama_agama' => 'Konghucu',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'nama_agama' => 'Lainnya',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
+
+        \App\Models\RefPenghasilanOrangTua::insert([
+            [
+                'penghasilan_orang_tua' => 'Rp. 0 - Rp. 1.000.000',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'penghasilan_orang_tua' => 'Rp. 1.000.000 - Rp. 2.000.000',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'penghasilan_orang_tua' => 'Rp. 2.000.000 - Rp. 3.000.000',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'penghasilan_orang_tua' => 'Rp. 3.000.000 - Rp. 4.000.000',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'penghasilan_orang_tua' => 'Rp. 4.000.000 - Rp. 5.000.000',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'penghasilan_orang_tua' => 'Rp. 5.000.000 - Rp. 6.000.000',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'penghasilan_orang_tua' => 'Rp. 6.000.000 - Rp. 7.000.000',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'penghasilan_orang_tua' => 'Rp. 7.000.000 - Rp. 8.000.000',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'penghasilan_orang_tua' => 'Rp. 8.000.000 - Rp. 9.000.000',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'penghasilan_orang_tua' => 'Rp. 9.000.000 - Rp. 10.000.000',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'penghasilan_orang_tua' => 'Lebih dari Rp. 10.000.000',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+        ]);
+
     }
 }

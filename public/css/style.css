@@ -1,0 +1,60 @@
+#statusPendaftaran {
+    margin-top: 20px;
+}
+
+#statusPendaftaran h3 {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+#statusList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#statusList li {
+    font-size: 1em;
+    color: grey;
+    padding: 5px 0;
+    transition: color 0.3s ease, font-weight 0.3s ease;
+}
+
+#statusList li.active {
+    color: #007bff;
+    /* Warna biru sebagai tanda aktif */
+    font-weight: bold;
+    /* Membuat teks lebih tebal */
+}
+
+#statusList li.completed {
+    color: green;
+    /* Warna hijau untuk menandai status yang telah selesai */
+}
+
+#statusList li.active::before {
+    content: "✔ ";
+    /* Menambahkan tanda cek di depan status aktif */
+    color: #007bff;
+    /* Warna biru untuk tanda cek */
+}
+
+#statusList li.completed::before {
+    content: "✔ ";
+    /* Menambahkan tanda cek di depan status yang telah selesai */
+    color: green;
+    /* Warna hijau untuk tanda cek */
+}
+
+#statusList li.active:hover,
+#statusList li.completed:hover {
+    color: #0056b3;
+    /* Warna saat hover untuk status aktif dan selesai */
+}
+
+#statusList li.active.completed {
+    font-weight: bold;
+    color: green;
+    /* Warna hijau untuk status yang aktif dan selesai */
+}
+
