@@ -18,6 +18,8 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     public const FORM = '/form-pendaftaran';
+    public const ADMIN = '/admin/dashboard';
+    public const S_ADMIN = '/super-admin/dashboard';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.

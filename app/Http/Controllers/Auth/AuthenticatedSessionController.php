@@ -29,7 +29,28 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::FORM);
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        $credentials = $request->only('email', 'password');
+
+        if(Auth::attempt($credentials)){
+            $user = Auth::user();
+            if($user->id_role == 1){
+                return redirect()->intended(RouteServiceProvider::FORM);
+            }
+            elseif($user->id_role == 2){
+                return redirect()->intended(RouteServiceProvider::ADMIN);
+            }
+            elseif($user->id_role == 3){
+                return redirect()->intended(RouteServiceProvider::S_ADMIN);
+            }
+            else{
+                return view('error.403');
+            }
+        }
     }
 
     /**

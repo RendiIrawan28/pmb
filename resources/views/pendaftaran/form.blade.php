@@ -22,15 +22,6 @@
                         <div class="col-12 col-md-6 order-md-1 order-last">
                             <h3>Formulir Pendaftaran Mahasiswa Baru</h3>
                         </div>
-                        <div class="col-12 col-md-6 order-md-2 order-first">
-                            <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item active" aria-current="page">
-                                        Data Diri
-                                    </li>
-                                </ol>
-                            </nav>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -63,7 +54,7 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group has-icon-left">
-                                                <label for="nisn">NISN(Nomor Induk Siswa Nasional)</label>
+                                                <label for="nisn">NISN (Nomor Induk Siswa Nasional)</label>
                                                 <div class="position-relative">
                                                     <input type="number" class="form-control" name="nisn"
                                                         placeholder="NISN" id="nisn" required>
@@ -75,7 +66,7 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group has-icon-left">
-                                                <label for="nik">NIK</label>
+                                                <label for="nik">NIK (Nomor Induk Kewarganegaraan)</label>
                                                 <div class="position-relative">
                                                     <input type="number" class="form-control" name="nik"
                                                         placeholder="NIK" id="nik" required>
@@ -438,8 +429,7 @@
                             $('#nik').val(pendaftaran.nik);
                             $('#jenis_kelamin').val(pendaftaran.jenis_kelamin);
                             $('#tempat_lahir').val(pendaftaran.tempat_lahir);
-                            $('#tanggal_lahir').val(pendaftaran.tanggal_lahir.split('-').reverse().join(
-                                '/')); // Mengubah format tanggal
+                            $('#tanggal_lahir').val(pendaftaran.tanggal_lahir.split('-').reverse().join('/')); // Mengubah format tanggal
                             $('#agama').val(pendaftaran.agama);
                             $('#domisili').val(pendaftaran.domisili);
                             $('#no_wa').val(pendaftaran.no_wa);
@@ -451,9 +441,6 @@
                             $('#id_sumber_informasi').val(pendaftaran.id_sumber_informasi);
                             $('#id_jalur_pendaftaran').val(pendaftaran.id_jalur_pendaftaran);
                             $('#id_rencana_tempat_tinggal').val(pendaftaran.id_rencana_tempat_tinggal);
-
-                            // Set pendaftaran_id untuk form upload gambar
-                            $('#pendaftaran_id').val(pendaftaran.id);
                             updateStatus(pendaftaran.status);
                         }
                     },
@@ -464,7 +451,7 @@
             }
 
             function populateDropdown(data, selector, textKey, valueKey) {
-                if (Array.isArray(data)) { // Tambahkan pemeriksaan untuk memastikan data adalah array
+                if (Array.isArray(data)) {
                     data.forEach(function(item) {
                         $(selector).append(`<option value="${item[valueKey]}">${item[textKey]}</option>`);
                     });

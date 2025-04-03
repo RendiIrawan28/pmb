@@ -18654,7 +18654,7 @@ body .bi:before,
     font-size: 1rem;
     list-style: none;
     font-weight: 600;
-    color: #25396f;
+    color: #fff;
 }
 .sidebar-wrapper .menu .sidebar-link {
     display: block;
@@ -18665,11 +18665,11 @@ body .bi:before,
     border-radius: 0.5rem;
     transition: all 0.5s;
     text-decoration: none;
-    color: #25396f;
+    color: #fff;
 }
 .sidebar-wrapper .menu .sidebar-link svg,
 .sidebar-wrapper .menu .sidebar-link i {
-    color: #7c8db5;
+    color: #fff;
 }
 .sidebar-wrapper .menu .sidebar-link i:before {
     vertical-align: top;
@@ -18678,7 +18678,7 @@ body .bi:before,
     margin-left: 1rem;
 }
 .sidebar-wrapper .menu .sidebar-link:hover {
-    background-color: #f0f1f5;
+    background-color: #181818;
 }
 .sidebar-wrapper .menu .sidebar-item {
     list-style: none;
@@ -18701,6 +18701,13 @@ body .bi:before,
 }
 .sidebar-wrapper .menu .sidebar-item.active > .sidebar-link.has-sub:after {
     content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9" style="fill:none;stroke:white;stroke-width:1"></polyline></svg>');
+}
+
+.table-buttons {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px; /* Mengatur jarak antar tombol */
+    justify-items: center; /* Agar tombol di tengah */
 }
 .sidebar-wrapper .menu .submenu {
     list-style: none;

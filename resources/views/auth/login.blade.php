@@ -1,13 +1,13 @@
 <x-guest-layout>
-    <script src="assets/static/js/initTheme.js"></script>
+    {{-- <script src="assets/static/js/initTheme.js"></script> --}}
     <div id="auth">
         <div class="row h-100">
             <div class="col-lg-5 col-12">
                 <div id="auth-left">
                     <div class="auth-logo">
                         <a>
-                            <img src="{{ asset('assets/compiled/png/uim.png') }}"
-                            style="width:230px;height:100px;" alt="Logo" srcset="" /></a>
+                            <img src="{{ asset('assets/compiled/png/Logo-UIM.png') }}"
+                            style="width:275px;height:100px;" alt="Logo" srcset="" /></a>
                     </div>
                     <h1 class="auth-title">Log in.</h1>
                     <p class="auth-subtitle mb-5">
@@ -33,7 +33,7 @@
                         </div>
                         <div class="form-check form-check-lg d-flex align-items-end">
                             <input class="form-check-input me-2" id="remember_me" type="checkbox" name="remember">
-                            <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
+                            <span class="form-check-label text-white">{{ __('Remember me') }}</span>
                             
                         </div>
                         <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5">
@@ -41,12 +41,12 @@
                         </button>
                     </form>
                     <div class="text-center mt-5 text-lg fs-4">
-                        <p class="text-gray-600">
+                        <p class="text-white">
                             Don't have an account?
-                            <a href="{{ route('register') }}" class="font-bold">Sign up</a>.
+                            <a href="{{ route('register') }}" class="font-bold">Sign up</a>
                         </p>
                         <p>
-                            <a class="font-bold" href="{{ route('password.request') }}">Forgot password?</a>.
+                            <a class="font-bold" href="{{ route('password.request') }}">Forgot password?</a>
                         </p>
                     </div>
                 </div>

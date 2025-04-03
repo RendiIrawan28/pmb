@@ -19,7 +19,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">File Input</h4>
+                                <h4 class="card-title">File Input Pembayaran</h4>
                             </div>
                             <div class="card-body">
                                 <div id="success-message" class="alert alert-success" style="display:none;"></div>
@@ -54,7 +54,7 @@
 
             function loadDataFromDatabase() {
                 $.ajax({
-                    url: '{{ route('upload.show') }}',
+                    url: '{{ route('bukti.show') }}',
                     type: 'GET',
                     success: function(response) {
                         const data = response.data;
@@ -73,12 +73,12 @@
 
                             const label = $('<label>', {
                                 class: 'form-label',
-                                for: `file-${item.id_ref_berkas}`,
-                                text: item.jenis_berkas
+                                for: `file-${item.id_ref_berkas_pembayaran}`,
+                                text: item.jenis_berkas_pembayaran
                             });
 
                             const fileForm = $('<form>', {
-                                id: `upload-form-${item.id_ref_berkas}`,
+                                id: `upload-form-${item.id_ref_berkas_pembayaran}`,
                                 method: 'POST',
                                 action: '{{ route('upload.store') }}',
                                 enctype: 'multipart/form-data',
@@ -92,14 +92,14 @@
                             const fileInput = $('<input>', {
                                 class: 'form-control',
                                 type: 'file',
-                                name: `berkas[${item.id_ref_berkas}]`,
-                                id: `berkas-${item.id_ref_berkas}`
+                                name: `berkas[${item.id_ref_berkas_pembayaran}]`,
+                                id: `berkas-${item.id_ref_berkas_pembayaran}`
                             });
 
                             const hiddenInput = $('<input>', {
                                 type: 'hidden',
                                 name: 'id_ref_berkas',
-                                value: item.id_ref_berkas
+                                value: item.id_ref_berkas_pembayaran
                             });
 
                             const submitButton = $('<button>', {
@@ -113,7 +113,7 @@
                                 type: 'button',
                                 class: 'btn btn-secondary berkas',
                                 text: 'Lihat Berkas',
-                                'data-id': item.id_ref_berkas,
+                                'data-id': item.id_ref_berkas_pembayaran,
                                 style: 'margin-left: 10px;'
                             });
 
@@ -163,15 +163,18 @@
                                     processData: false,
                                     success: function(response) {
                                         if (response.success) {
-                                            alert(response.success); // Display success message
+                                            alert(response
+                                            .success); // Display success message
                                         }
                                         if (response.errors) {
-                                            alert(response.errors.join("\n")); // Show any error messages
+                                            alert(response.errors.join(
+                                                "\n")); // Show any error messages
                                         }
                                     },
                                     error: function(xhr, status, error) {
                                         // Handle response where the file has already been uploaded
-                                        const response = JSON.parse(xhr.responseText);
+                                        const response = JSON.parse(xhr
+                                            .responseText);
                                         if (response.error) {
                                             alert(response.error);
                                         } else {

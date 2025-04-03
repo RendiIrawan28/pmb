@@ -32,12 +32,6 @@ class PendaftaranController extends Controller
         return response()->json(['pendaftaran' => $pendaftaran, 'data' => $data]);
     }
 
-    public function index()
-    {
-        return view('pendaftaran.file_upload');
-    }
-
-
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [

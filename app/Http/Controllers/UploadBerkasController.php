@@ -20,8 +20,19 @@ class UploadBerkasController extends Controller
     {
         $refBerkas = RefBerkas::all();
         $berkas = UploadBerkas::where('user_id', Auth::id())->get();
-        return response()->json(['data' => $refBerkas,'berkas' =>$berkas]);
+        return response()->json(['data' => $refBerkas, 'berkas' => $berkas]);
     }
+
+    public function showdata($id)
+    {
+        $data = ['jenis_berkas' => RefBerkas::all()];
+        $berkas = UploadBerkas::where('user_id', Auth::id())
+            ->where('id_ref_berkas', $id)
+            ->get();
+
+        return response()->json(['data' => $data, 'berkas' => $berkas]);
+    }
+
 
     public function store(Request $request)
     {
@@ -36,6 +47,16 @@ class UploadBerkasController extends Controller
         }
 
         foreach ($request->file('berkas') as $id_ref_berkas => $file) {
+            // Cek apakah file dengan id_ref_berkas yang sama sudah ada
+            $existingUpload = UploadBerkas::where('id_ref_berkas', $id_ref_berkas)
+                ->where('user_id', Auth::id())
+                ->first();
+
+            if ($existingUpload) {
+                // Jika file sudah ada, skip upload dan kirimkan respons
+                return response()->json(['error' => "Berkas {$id_ref_berkas} sudah diupload."], 400);
+            }
+
             if ($file) {
                 $path = $file->store('uploads', 'public');
                 UploadBerkas::create([

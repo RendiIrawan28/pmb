@@ -12,7 +12,6 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <link rel="stylesheet" href="./assets/compiled/css/app.css" />
-        <link rel="stylesheet" href="./assets/compiled/css/app-dark.css" />
         <link rel="stylesheet" href="./assets/compiled/css/auth.css" />
 
         <!-- Scripts -->

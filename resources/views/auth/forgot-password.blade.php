@@ -1,12 +1,11 @@
 <x-guest-layout>
-    <script src="assets/static/js/initTheme.js"></script>
     <div id="auth">
         <div class="row h-100">
             <div class="col-lg-5 col-12">
                 <div id="auth-left">
                     <div class="auth-logo">
                         <a>
-                            <img src="{{ asset('assets/compiled/png/uim.png') }}" style="width:230px;height:100px;"
+                            <img src="{{ asset('assets/compiled/png/Logo-UIM.png') }}" style="width:275px;height:100px;"
                                 alt="Logo" srcset="" /></a>
                     </div>
                     <h1 class="auth-title">Forgot Password</h1>
@@ -33,9 +32,9 @@
                         </button>
                     </form>
                     <div class="text-center mt-5 text-lg fs-4">
-                        <p class="text-gray-600">
+                        <p class="text-white">
                             Remember your account?
-                            <a href="{{ route('login') }}" class="font-bold">Log in</a>.
+                            <a href="{{ route('login') }}" class="font-bold">Log in</a>
                         </p>
                     </div>
                 </div>

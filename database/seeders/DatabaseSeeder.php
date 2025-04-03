@@ -12,18 +12,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-
-        \App\Models\User::create([
-            'name' => 'test',
-            'email' => 'test@gmail.com',
-            'password' => bcrypt('asdasdasd'),
-            'email_verified_at' => now(),
+        \App\Models\refRole::insert([
+            [
+                'nama_role' => 'calon_mahasiswa',
+            ],
+            [
+                'nama_role' => 'admin',
+            ],
+            [
+                'nama_role' => 'super_admin',
+            ],
         ]);
 
 
@@ -112,6 +110,17 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'jenis_berkas' => 'SKHUN',
+            ],
+        ]);
+        \App\Models\refBuktiPembayaran::insert([
+            [
+                'jenis_berkas_pembayaran' => 'Bank BRI',
+            ],
+            [
+                'jenis_berkas_pembayaran' => 'Bank Jateng',
+            ],
+            [
+                'jenis_berkas_pembayaran' => 'Bank Mandiri',
             ],
         ]);
         \App\Models\refJenisKelamin::insert([
@@ -233,6 +242,30 @@ class DatabaseSeeder extends Seeder
             ],
 
         ]);
+
+        \App\Models\User::insert([
+            [
+                'name' => 'test1',
+                'email' => 'test@gmail.com',
+                'password' => bcrypt('asdasdasd'),
+                'email_verified_at' => now(),
+                'id_role' => 1,
+            ],
+            [
+                'name' => 'test2',
+                'email' => 'test2@gmail.com',
+                'password' => bcrypt('asdasdasd'),
+                'email_verified_at' => now(),
+                'id_role' => 2,
+            ],
+            [
+                'name' => 'test3',
+                'email' => 'test3@gmail.com',
+                'password' => bcrypt('asdasdasd'),
+                'email_verified_at' => now(),
+                'id_role' => 3,
+            ],
+            ]);
 
     }
 }
